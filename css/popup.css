@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/*container*/
+
+.container {
+	padding-bottom: .5em;
+	width: 20em;
+
+	color: #fff;
+	font-weight: 700;
+
+	background: #00917c;
+	border-radius: 5px;
+}
+
+/*header*/
+
+.header	{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background: #025955;
+	border-radius: 5px 5px 0 0;
+}
+
+/*logo*/
+
+.logo {
+	width: 5em;
+}
+
+/*switch*/
+
+.switch {
+	position: relative;
+	/*margin: auto;*/
+	margin-bottom: .5em;
+	height: 20px;
+	width: 58px;
+	z-index: 1;
+}
+
+.switch__finder {
+	left: 1px;
+	width: 33%;
+	height: 100%;
+}
+
+.switch__off {
+	left: 33%;
+	width: 33%;
+	height: 100%;
+}
+
+.switch__block {
+	right: 1px;
+	width: 33%;
+	height: 100%;
+}
+
+.switch__label {
+	position: absolute;
+	text-indent: -9999px;
+	z-index: 2;
+}
+
+.switch__label {
+	cursor: pointer;
+}
+
+.switch input {
+	visibility: hidden;
+	position: absolute;
+}
+
+/*slider*/
+
+.switch__slider {
+	height: 100%;
+	width: 100%;
+	border-radius: 10px;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) inset, 0 0 4px rgba(0, 0, 0, 0.5) inset, 0 2px 2px 1px rgba(0, 0, 0, 0.3) inset;
+	transition: background-color 0.2s linear 0s;
+}
+
+.switch__slider:after {
+	transition: left 0.2s linear 0s, right 0.2s linear 0s;
+	background: linear-gradient(#D0D0D0, #FDFDFD) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	content: "";
+	position: absolute;
+	top: 1px;
+	border-radius: 50%;
+	height: calc(100% - 2px);
+	width: calc(100%/3 - 1px);
+	box-shadow: 0 0 1px 1px #f4f4f4 inset, 0 0 3px 1px rgba(0, 0, 0, 0.6);
+	left: 33%;
+}
+
+.switch__radio__block:checked  ~ .switch__slider {
+	background: #E50D0D;
+}
+
+.switch__radio__off:checked  ~ .switch__slider {
+	background: #333;
+}
+
+.switch__radio__finder:checked  ~ .switch__slider {
+	background: #44b3f0;
+}
+
+.switch__radio__off:checked .switch__slider:after {
+	background: #333;
+}
+
+.switch__radio__block:checked  ~ .switch__slider:after {
+	left: calc(2*(100%/3));
+}
+
+.switch__radio__off:checked  ~ .switch__slider:after {
+	left: calc(1px + 100%/3);
+}
+
+.switch__radio__finder:checked  ~ .switch__slider:after {
+	left: 1px;
+}
+
+.switcher {
+	display: flex;
+	justify-content: space-between;
+
+	margin: 1em .5em 0;
+}
+
+/*switch position*/
+
+.switch__position__outer {
+	margin: 0;
+	padding: 0;
+
+	text-align: center;
+}
+
+.switch__position {
+	margin: 0;
+	padding: 0 .5em; 
+
+	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+
+	border-radius: 10px;
+
+	transition: background .2s linear,
+				color .2s linear;
+}
+
+.switch__position:hover {
+	cursor: pointer;
+}
+
+.off {
+	background: #333;
+}
+
+.ad__Finder:hover {
+	background: #44b3f0;
+}
+
+.ad__Block:hover {
+	background: #E50D0D;
+}
+
+.off:hover {
+	background: #333;
+}

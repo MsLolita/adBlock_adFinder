@@ -1,0 +1,47 @@
+ {
+ 	"version": "0.1",
+ 	"author": "MsLolita",
+ 	"short_name": "FB ad",
+ 	"update_url": "https://clients2.google.com/service/update2/crx",
+ 	"background": {
+		"scripts": [
+			"./js/popupStyle.js",
+			"./js/elements.js"
+		],
+		"css": "./css/popup.css",
+		"persistent": false
+ 	},
+ 	"browser_action": {
+		"default_icon": "./img/icons/extension/38x38.png",
+		"default_popup": "popup.html",
+		"default_title": "ad Finder&Block"
+ 	},
+ 	"default_locale": "en",
+ 	"description": "Can find or block ads",
+ 	"icons": {
+ 		"128": "./img/icons/extension/128x128.png",
+ 		"48": "./img/icons/extension/48x48.png",
+ 		"32": "./img/icons/extension/32x32.png",
+ 		"16": "./img/icons/extension/16x16.png"
+ 	},
+ 	"manifest_version": 2,
+ 	"name": "ads finder for facebook",
+ 	"options_page": "popup.html?options=1",
+ 	"permissions": [
+		"https://www.facebook.com/",
+		"storage"
+ 	],
+ 	"content_scripts": [
+		{
+			"matches": [
+				"https://www.facebook.com/"
+			],
+			"js": [
+				"./js/choosePosition.js"
+			]
+		}
+ 	],
+ 	"web_accessible_resources": [
+ 		"js/*"
+ 	]
+ }

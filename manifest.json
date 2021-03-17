@@ -5,7 +5,7 @@
  	"update_url": "https://clients2.google.com/service/update2/crx",
  	"background": {
 		"scripts": [
-			"./js/popupStyle.js",
+			"./js/switchInteract.js",
 			"./js/elements.js"
 		],
 		"css": "./css/popup.css",

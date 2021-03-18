@@ -19,7 +19,7 @@ class ChooseWorkerByPosition {
         switch (textPosition) {
             case 'adFinder':
             case 'adBlock':
-                this.#currentWorker.startWorker(textPosition);
+                this.#currentWorker.startWorking(textPosition);
                 break;
             case 'off':
                 this.#currentWorker.stopWorking();

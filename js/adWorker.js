@@ -5,13 +5,14 @@ export default class AdWorker {
     #workingProcess;
     #selectorToShow;
 
-    get isRunning() {
-        return !!this.#workingProcess;
+    get isStopped() {
+        return !this.#workingProcess;
     }
 
-    startWorker(typeWorker) {
+    startWorking(typeWorker) {
         this.#selectorToShow =`span[id] > ${ typeWorker === "adFinder" ? "" : "span" } a[tabindex='0'] > span`;
-        if (!this.isRunning)
+        this.#delPostBySelector();
+        if (this.isStopped)
             this.#workingProcess = setInterval(this.#checkIfWasLoading.bind(this), 200);
     }
 
@@ -21,19 +22,18 @@ export default class AdWorker {
     }
 
     #checkIfWasLoading() {
-        if (AdWorker.#allPosts().length > this.amountAdPosts) {
-            this.#delPosts();
-            this.amountAdPosts = AdWorker.#allPosts().length;
-        }
+        if (AdWorker.#allPosts().length > this.amountAdPosts)
+            this.#delPostBySelector();
     }
 
     static #allPosts() {
         return document.querySelectorAll("div[data-pagelet^=FeedUnit_]");
     }
 
-    #delPosts() {
+    #delPostBySelector() {
         AdWorker.#allPosts().forEach(e =>
             e.querySelector(this.#selectorToShow) || e.parentNode.removeChild(e)
         );
+        this.amountAdPosts = AdWorker.#allPosts().length;
     }
 }

@@ -3,7 +3,7 @@
 import * as html from './elements.js'
 
 class SwitchInteract {
-	fixPosition(textPosition) {
+	#fixPosition(textPosition) {
 		const sliderPosition = html[textPosition + 'Slider'],
 			sliderPositionText = html[textPosition + 'Text'],
 			backgroundColor = {
@@ -14,11 +14,10 @@ class SwitchInteract {
 
 		SwitchInteract.#deleteAllHighlight();
 
-		chrome.storage.local.set({ textPosition });
-
 		sliderPosition.checked = true;
 		sliderPositionText.style.background = backgroundColor[textPosition];
 
+		chrome.storage.local.set({ textPosition });
 		this.#sendPositionToWorker(textPosition);
 	}
 
@@ -33,18 +32,18 @@ class SwitchInteract {
 	}
 
 	restorePositionOnEntering () {
-		chrome.storage.local.get('textPosition', ({ textPosition }) => this.fixPosition(textPosition));
+		chrome.storage.local.get('textPosition', ({ textPosition }) => this.#fixPosition(textPosition));
 	}
 
 	checkChangeSwitch() {
 		html.switchSlider.forEach(sliderPosition =>
-			sliderPosition.addEventListener('change', e => this.fixPosition(e.path[0].value), false)
+			sliderPosition.addEventListener('change', e => this.#fixPosition(e.path[0].value), false)
 		);
 	}
 
 	checkClickSwitch() {
 		html.switchPosition.forEach(textPosition =>
-			textPosition.addEventListener('click', e => this.fixPosition(e.path[0].innerText), false)
+			textPosition.addEventListener('click', e => this.#fixPosition(e.path[0].innerText), false)
 		);
 	}
 }
@@ -56,4 +55,3 @@ openPopup.restorePositionOnEntering();
 openPopup.checkClickSwitch();
 
 openPopup.checkChangeSwitch();
-
